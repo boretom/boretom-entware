@@ -40,9 +40,9 @@ endef
 
 define Package/simpleproxy/install
 	$(INSTALL_DIR) $(1)/opt/bin
-	$(INSTALL_DIR) $(1)/opt/man/man1
+	$(INSTALL_DIR) $(1)/opt/share/man/man1
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/simpleproxy $(1)/opt/bin/
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/man/man1/simpleproxy.1 $(1)/opt/man/man1/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/man/man1/simpleproxy.1 $(1)/opt/share/man/man1/
 endef
 
 $(eval $(call BuildPackage,simpleproxy))
