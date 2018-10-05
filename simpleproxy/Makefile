@@ -39,9 +39,8 @@ define Package/simpleproxy/description
 endef
 
 define Package/simpleproxy/install
-	$(INSTALL_DIR) $(1)/opt/sbin
+	$(INSTALL_DIR) $(1)/opt/bin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/simpleproxy $(1)/opt/bin/
 endef
-
-#CONFIGURE_ARGS += \
 
 $(eval $(call BuildPackage,simpleproxy))
