@@ -27,11 +27,11 @@ PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/simpleproxy/Default
-	SECTION:=simpleproxy
-	CATEGORY:=Network
-	URL:=https://github.com/vzaliva/simpleproxy
-	TITLE:=Simple TCP proxy
+define Package/simpleproxy
+  SECTION:=simpleproxy
+  CATEGORY:=Network
+  URL:=https://github.com/vzaliva/simpleproxy
+  TITLE:=Simple TCP proxy
 endef
 
 define Package/simpleproxy/description
