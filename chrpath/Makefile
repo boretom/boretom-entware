@@ -14,7 +14,7 @@ PKG_RELEASE:=1
 PKG_SOURCE_URL:=http://http.debian.net/debian/pool/main/c/chrpath
 PKG_SOURCE:=$(PKG_NAME)_$(PKG_VERSION).orig.tar.gz
 PKG_HASH:=bb0d4c54bac2990e1bdf8132f2c9477ae752859d523e141e72b3b11a12c26e7b
-PKG_MAINTAINER:=Jeff Doe <jeff@doe.com>
+PKG_MAINTAINER:=Thomas Kupper <thomas.kupper@gmail.com>
 PKG_LICENSE:=GPLv2
 
 PKG_INSTALL:=1
