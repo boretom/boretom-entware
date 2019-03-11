@@ -1,5 +1,6 @@
 # my own very small Entware package collection #
 
-Only two packages are in it for now
-- [simpleproxy](https://github.com/vzaliva/simpleproxy.git)
+Three packages are in it for now
 - [chrpath](http://directory.fsf.org/project/chrpath)
+- [nmon](http://nmon.sourceforge.net/pmwiki.php)
+- [simpleproxy](https://github.com/vzaliva/simpleproxy.git)
