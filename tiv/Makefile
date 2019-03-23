@@ -21,7 +21,7 @@ PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_MAINTAINER:=Thomas Kupper <thomas.kupper@gmail.com>
 PKG_LICENSE:=GPLv2
 
-PKG_INSTALL:=1
+PKG_INSTALL=0
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -38,15 +38,22 @@ define Package/tiv/description
   and unicode block graphics characters
 endef
 
-define Build/Configure
-	# make some of the 001 patch files executable
-	chmod +x $(PKG_BUILD_DIR)/{configure,depcomp,install-sh,config.guess,config.sub,missing}
-	$(call Build/Configure/Default)
+define Build/Prepare
+	$(call Build/Prepare/Default)
+	$(CP) $(PKG_BUILD_DIR)/src/main/cpp/* $(PKG_BUILD_DIR)/
+endef
+
+	#$(MAKE) $(PKG_JOBS) $(MAKE_FLAGS) $(MAKE_VARS) \
+
+define Build/Compile
+	$(MAKE) $(PKG_JOBS) \
+		CXX=$(TARGET_CXX) CPPFLAGS="$(TARGET_CPPFLAGS)" \
+		LDFLAGS="$(TARGET_LDFLAGS)" -C $(PKG_BUILD_DIR) all
 endef
 
 define Package/tiv/install
 	$(INSTALL_DIR) $(1)/opt/bin
-	$(CP) $(PKG_BUILD_DIR)/src/main/cpp/tiv $(1)/opt/bin/
+	$(CP) $(PKG_BUILD_DIR)/tiv $(1)/opt/bin/
 endef
 
 $(eval $(call BuildPackage,tiv))
