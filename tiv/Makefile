@@ -8,7 +8,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tiv
-PKG_REV:=287fde33419f24017e4db2fec2825f95977d7c5a
+PKG_REV:=9943deed2c123a8878169efe84576ee7002845a5
 PKG_VERSION:=1.0.0-git-$(shell echo "$(PKG_REV)" | cut -c1-7)
 PKG_RELEASE:=1
 
@@ -39,8 +39,8 @@ define Package/tiv/description
 endef
 
 define Build/Configure
-	# make some of the 001 patch file executable
-	chmod +x $(PKG_BUILD_DIR)/{configure,depcomp,install-sh,missing}
+	# make some of the 001 patch files executable
+	chmod +x $(PKG_BUILD_DIR)/{configure,depcomp,install-sh,config.guess,config.sub,missing}
 	$(call Build/Configure/Default)
 endef
 
