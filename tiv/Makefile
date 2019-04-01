@@ -8,7 +8,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tiv
-PKG_REV:=9943deed2c123a8878169efe84576ee7002845a5
+PKG_REV:=53dff6f5b933d0aa883868efb9e47d48c2ca6c4f
 PKG_VERSION:=1.0.0-git-$(shell echo "$(PKG_REV)" | cut -c1-7)
 PKG_RELEASE:=1
 
@@ -29,7 +29,7 @@ define Package/tiv
   SECTION:=devel
   CATEGORY:=Utilities
   TITLE:=Program to display images in a terminal
-  URL:=http://directory.fsf.org/project/tiv/
+  URL:=https://github.com/stefanhaustein/TerminalImageViewer
   DEPENDS:=libstdcpp
 endef
 
@@ -42,8 +42,6 @@ define Build/Prepare
 	$(call Build/Prepare/Default)
 	$(CP) $(PKG_BUILD_DIR)/src/main/cpp/* $(PKG_BUILD_DIR)/
 endef
-
-	#$(MAKE) $(PKG_JOBS) $(MAKE_FLAGS) $(MAKE_VARS) \
 
 define Build/Compile
 	$(MAKE) $(PKG_JOBS) \
