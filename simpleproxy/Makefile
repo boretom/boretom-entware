@@ -8,21 +8,19 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=simpleproxy
-PKG_VERSION:=3.5
+PKG_SOURCE_DATE:=2016-08-08
+#PKG_VERSION:=3.5
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-#PKG_SOURCE_URL=$(PROJECT_GIT)/project/jsonpath.git
 PKG_SOURCE_URL=https://github.com/vzaliva/simpleproxy.git
-PKG_SOURCE_DATE:=2016-08-08
 PKG_SOURCE_VERSION:=2328a3c2265eb3363bcc45a02f1d1455023a468f
-#PKG_MIRROR_HASH:=0601b4d7aa5ee096e99388a57cb0701673ab58fccd6ed2984a2abbd4f846e045
+PKG_MIRROR_HASH:=18a42b6be0f18a930bd65029f6f5d1569f8eb349be513fac0413cbaca0839038
 
 PKG_MAINTAINER:=Thomas Kupper <thomas.kupper@gmail.com>
 PKG_LICENSE:=GPL-2.0
 PKG_LICENSE_FILES:=LICENSE-GPL2
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -35,7 +33,8 @@ define Package/simpleproxy
 endef
 
 define Package/simpleproxy/description
-  Simple TCP proxy
+  Simpleproxy is a simple TCP proxy. It accepts connections on a local
+  TCP port and forward them to anoter port on a remote host via TCP.
 endef
 
 define Package/simpleproxy/install
