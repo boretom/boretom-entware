@@ -5,8 +5,6 @@
 # See /LICENSE for more information.
 #
 
-# TODO: 
-
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tshark
@@ -22,7 +20,6 @@ PKG_MAINTAINER:=Thomas Kupper <thomas.kupper@gmail.com>
 PKG_LICENSE:=GPL-2.0
 PKG_LICENSE_FILES:=LICENSE-GPL2
 
-#PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 PKG_BUILD_DIR:=$(BUILD_DIR)/wireshark-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
@@ -34,7 +31,7 @@ define Package/tshark
   URL:=https://www.wireshark.org
   TITLE:=Terminal based wireshark to dump and analyze network traffic
   #DEPENDS:=+geoip
-  DEPENDS:=+libcares +glib2 +libcap +libpcap +libpcre +libgcrypt +libgnutls +zlib +lua $(ICONV_DEPENDS)
+  DEPENDS:=+libcares +glib2 +libcap +libpcap +libpcre +libgcrypt +libgnutls +zlib +libxml2 +libssh2 +libnghttp2 $(ICONV_DEPENDS)
 endef
 
 define Package/tshark/description
@@ -46,24 +43,23 @@ endef
 
 
 TARGET_CFLAGS += -D_GNU_SOURCE
-#TARGET_CFLAGS += -D_GNU_SOURCE -L$(STAGING_DIR)/opt/lib/libintl-full/lib
-#TARGET_LDFLAGS += -Wl,-rpath -Wl,$(STAGING_DIR)/opt/lib/libiconv-full/lib
 
 CONFIGURE_ARGS += \
 	--disable-wireshark \
 	--with-libgcrypt-prefix=$(STAGING_PREFIX) \
 	--with-qt=no --with-gtk=no \
 	--with-pcap=$(STAGING_DIR)/opt \
+	--enable-setuid-install \
 	--enable-sshdump=yes \
+	--without-lua \
+	--without-libssh \
+	--with-nghttp2 \
 	--disable-wireshark
-
-#	--with-lua=$(STAGING_DIR)/opt \
 
 define Build/Compile
 	$(MAKE) CC_FOR_BUILD=$(HOSTCC) CC=$(HOSTCC) -C $(PKG_BUILD_DIR)/tools/lemon lemon
 	$(call Build/Compile/Default)
 endef
-
 
 define Package/tshark/install
 	$(INSTALL_DIR) $(1)/opt/bin $(1)/opt/lib
@@ -71,13 +67,5 @@ define Package/tshark/install
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/lib*.so.* $(1)/opt/lib/
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/wireshark $(1)/opt/lib/
 endef
-
-#	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/tshark $(1)/opt/bin/
-#	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/dumpcap $(1)/opt/bin/
-#	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libwireshark.so.* $(1)/opt/lib/
-#	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libwiretap.so.* $(1)/opt/lib/
-#	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libwscodecs.so.* $(1)/opt/lib/
-#	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libwsutil.so.* $(1)/opt/lib/
-#	$(CP) $(PKG_INSTALL_DIR)/opt/lib/wireshark $(1)/opt/lib/
 
 $(eval $(call BuildPackage,tshark))
