@@ -1,6 +1,6 @@
 # my own very small Entware package collection #
 
-Three packages are in it for now
+These packages are in it for now
 - [catimg](https://github.com/posva/catimg)
 - [chrpath](http://directory.fsf.org/project/chrpath)
 - [nmon](http://nmon.sourceforge.net/pmwiki.php)
